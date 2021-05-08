@@ -23,12 +23,12 @@ namespace UnitTestAndDebug
         }
 
         [Test]
-        public void IsEmptyName()
+        public void NameCannotBeEmpty()
         {
             //Act
             person.Name = "";
             //Assert
-            Assert.IsEmpty(person.Name);
+            Assert.IsNotEmpty(person.Name);
         }
 
         [Test]
