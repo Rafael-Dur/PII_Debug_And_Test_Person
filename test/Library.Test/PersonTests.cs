@@ -1,7 +1,6 @@
 using NUnit.Framework;
 using UnitTestAndDebug;
 
-
 namespace UnitTestAndDebug
 {
     public class Tests
@@ -23,6 +22,12 @@ namespace UnitTestAndDebug
         }
 
         [Test]
+        public void NameMustBeString()
+        {
+            Assert.IsInstanceOf(typeof(string),person.Name);
+        }
+
+        [Test]
         public void NameCannotBeEmpty()
         {
             //Act
@@ -41,12 +46,33 @@ namespace UnitTestAndDebug
         }
 
         [Test]
-        public void ValidateEmptyID() 
+        public void IDCannotBeEmpty() 
         {
             //Act
             person.ID = "";
             //Assert
-            Assert.AreEqual("", person.ID);
+            Assert.IsNotEmpty(person.ID);
         }
+
+        [Test]
+        public void IDMustBeString()
+        {
+            person.ID = "5.280.924-2";
+            Assert.IsInstanceOf(typeof(string), person.ID);
+        }
+
+        [Test]
+        public void CorrectLastIDDigit()
+        {   
+            //Act
+            person.ID = "52050013";
+            //Assert
+            Assert.IsTrue(IdUtils.IdIsValid(person.ID));
+            
+        }
+
+
+
+
     }
 }
